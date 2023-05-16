@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import clipboardCopy from 'clipboard-copy';
 import { useHistory } from 'react-router-dom';
-import shareIcon from '../../images/shareIcon.svg';
-import blackHeartIcon from '../../images/blackHeartIcon.svg';
+import { ShareNetwork, Heart } from '@phosphor-icons/react';
 
 export default function FavoriteRecipeCard({
   index = 0,
@@ -62,43 +61,62 @@ export default function FavoriteRecipeCard({
   }, [isRecipeCopied]);
 
   return (
-    <div>
-      <button onClick={ redirectToDetails }>
+    <div className="flex w-full">
+      <button onClick={ redirectToDetails } className="h-full w-40">
         <img
-          className="h-20 w-20"
+          className="w-full h-32 object-cover rounded-l-lg"
           src={ image }
           alt={ name }
           data-testid={ `${index}-horizontal-image` }
         />
       </button>
-      <div>
-        <div>
-          <button
-            data-testid={ `${index}-horizontal-name` }
-            onClick={ redirectToDetails }
+      <div
+        className="
+          flex flex-col px-3 justify-around py-1
+          w-40 border border-stone-400
+          rounded-r-lg
+        "
+      >
+        <button
+          data-testid={ `${index}-horizontal-name` }
+          onClick={ redirectToDetails }
+          className="flex flex-col"
+        >
+          <p className="text-md font-bold">{name}</p>
+          <p
+            data-testid={ `${index}-horizontal-top-text` }
+            className="text-[0.5rem] font-semibold text-neutral-400"
           >
-            {name}
-          </button>
-          <span data-testid={ `${index}-horizontal-top-text` }>
-            {`- ${nationality} - ${category}`}
+            {`${nationality && `${nationality} - `} ${category}`}
             {alcoholicOrNot ? ' - Alcoholic' : null}
-          </span>
+          </p>
+        </button>
+        <div className="flex gap-4">
+          <button onClick={ handleShareButton } src="shareIcon">
+            {isRecipeCopied ? (
+              <span className="text-[0.45rem] flex">Link copied!</span>
+            ) : (
+              <ShareNetwork
+                src="shareIcon"
+                alt="share-btn"
+                color="#FCC436"
+                size={ 24 }
+                weight="fill"
+                data-testid={ `${index}-horizontal-share-btn` }
+              />
+            )}
+          </button>
+          <button onClick={ handleUnfavoriteButton }>
+            <Heart
+              src="blackHeartIcon"
+              data-testid={ `${index}-horizontal-favorite-btn` }
+              alt="filled heart icon"
+              color="#FCC436"
+              size={ 24 }
+              weight="fill"
+            />
+          </button>
         </div>
-        <button onClick={ handleShareButton } src="shareIcon">
-          <img
-            src={ shareIcon }
-            alt="share-btn"
-            data-testid={ `${index}-horizontal-share-btn` }
-          />
-        </button>
-        <button onClick={ handleUnfavoriteButton }>
-          <img
-            src={ blackHeartIcon }
-            data-testid={ `${index}-horizontal-favorite-btn` }
-            alt="filled heart icon"
-          />
-        </button>
-        {isRecipeCopied && 'Link copied!'}
       </div>
     </div>
   );

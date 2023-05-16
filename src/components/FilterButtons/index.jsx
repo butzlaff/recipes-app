@@ -55,7 +55,10 @@ export default function FilterButtons({
             isMealButton(name) ? 'filter-by-meal-btn' : 'filter-by-drink-btn'
           }
         >
-          <img src={ filterButtonsImages[name] } alt="" />
+          <img
+            src={ filterButtonsImages[name] }
+            alt=""
+          />
           <span className="text-violet-400 text-sm w-10 flex justify-center items-center">
             {name}
           </span>
