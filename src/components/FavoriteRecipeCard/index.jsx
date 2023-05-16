@@ -80,7 +80,7 @@ export default function FavoriteRecipeCard({
         <button
           data-testid={ `${index}-horizontal-name` }
           onClick={ redirectToDetails }
-          className="flex flex-col"
+          className="flex flex-col justify-center items-center"
         >
           <p className="text-md font-bold">{name}</p>
           <p
