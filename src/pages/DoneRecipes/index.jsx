@@ -10,7 +10,7 @@ function DoneRecipes() {
   const hasAnyFilter = filteredDoneRecipes.length > 0;
 
   return (
-    <>
+    <div>
       <Header title="Done Recipes" />
       <FilterButtons setFilteredDoneRecipes={ setFilteredDoneRecipes } />
       <div>
@@ -46,7 +46,7 @@ function DoneRecipes() {
         )}
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 
