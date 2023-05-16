@@ -26,7 +26,7 @@ function Recipes({
   }, [currentCategory]);
 
   return (
-    <div className="flex justify-center gap-2 flex-wrap">
+    <div className="flex justify-center gap-2 flex-wrap mb-20">
       <CategoriesBar setHasFilterByCategory={ setHasFilterByCategory } />
       {pathname.includes('meals')
         ? (hasFilterByCategory ? filteredMealsByCategory : meals).map(

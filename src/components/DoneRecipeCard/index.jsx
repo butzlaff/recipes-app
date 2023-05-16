@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import clipboardCopy from 'clipboard-copy';
 import { useHistory } from 'react-router-dom';
-import shareIcon from '../../images/shareIcon.svg';
-// import favoriteIcon from '../../images/whiteHeartIcon.svg';
-// import favoriteChecked from '../../images/blackHeartIcon.svg';
+import { ShareNetwork } from '@phosphor-icons/react';
 
 export default function DoneRecipeCard({
   index = 0,
@@ -42,50 +40,80 @@ export default function DoneRecipeCard({
     history.push(redirectUrl);
   }
 
+  useEffect(() => {
+    if (isRecipeCopied) {
+      const maxTime = 2000;
+      const timeout = setTimeout(() => {
+        setIsRecipeCopied(false);
+      }, maxTime);
+      return () => clearTimeout(timeout);
+    }
+  }, [isRecipeCopied]);
+
   return (
-    <div>
-      <button
-        onClick={ redirectToDetails }
-      >
+    <div className="flex w-full ml-4">
+      <button onClick={ redirectToDetails } className="h-full w-40">
         <img
-          className="h-20 w-20"
+          className="w-full h-32 object-cover rounded-l-lg"
           src={ image }
           alt={ name }
           data-testid={ `${index}-horizontal-image` }
         />
       </button>
-      <div>
-        <div>
+      <div
+        className="
+          flex flex-col px-3 justify-between py-1
+          w-fit border border-stone-400
+          rounded-r-lg
+        "
+      >
+        <div className="flex gap-4">
           <button
             data-testid={ `${index}-horizontal-name` }
             onClickCapture={ redirectToDetails }
+            className="flex flex-col"
           >
-            {name}
+            <p className="text-md font-bold">{name}</p>
+            <p
+              data-testid={ `${index}-horizontal-top-text` }
+              className="text-xs font-semibold text-neutral-400"
+            >
+              {`${nationality} - ${category}`}
+              {alcoholicOrNot ? ' - Alcoholic' : null}
+            </p>
           </button>
-          <span data-testid={ `${index}-horizontal-top-text` }>
-            {`- ${nationality} - ${category}`}
-            {alcoholicOrNot ? ' - Alcoholic' : null}
-          </span>
+          <button onClick={ handleShareButton } src="shareIcon">
+            {isRecipeCopied ? (
+              <span className="text-[0.45rem] flex">Link copied!</span>
+            ) : (
+              <ShareNetwork
+                src="shareIcon"
+                alt="share-btn"
+                size={ 24 }
+                weight="fill"
+                color="#FCC436"
+                data-testid={ `${index}-horizontal-share-btn` }
+              />
+            )}
+          </button>
         </div>
-        <button
-          onClick={ handleShareButton }
-          src="shareIcon"
+        <p
+          data-testid={ `${index}-horizontal-done-date` }
+          className="text-[0.5rem] font-medium"
         >
-          <img
-            src={ shareIcon }
-            alt="share-btn"
-            data-testid={ `${index}-horizontal-share-btn` }
-          />
-        </button>
-        {isRecipeCopied && 'Link copied!'}
-      </div>
-      <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
-      <div>
-        {tags.map((tag, i) => (
-          <p key={ i } data-testid={ `${index}-${tag}-horizontal-tag` }>
-            {tag}
-          </p>
-        ))}
+          {`Done in: ${doneDate}`}
+        </p>
+        <div className="flex justify-between">
+          {tags.map((tag, i) => (
+            <p
+              key={ i }
+              data-testid={ `${index}-${tag}-horizontal-tag` }
+              className="text-[0.45rem] rounded-full bg-neutral-300 text-neutral-700 px-1"
+            >
+              {tag}
+            </p>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -51,6 +51,16 @@ export default function FavoriteRecipeCard({
     handleUnfavorite(newFavoriteRecipes);
   }
 
+  useEffect(() => {
+    if (isRecipeCopied) {
+      const maxTime = 2000;
+      const timeout = setTimeout(() => {
+        setIsRecipeCopied(false);
+      }, maxTime);
+      return () => clearTimeout(timeout);
+    }
+  }, [isRecipeCopied]);
+
   return (
     <div>
       <button onClick={ redirectToDetails }>
