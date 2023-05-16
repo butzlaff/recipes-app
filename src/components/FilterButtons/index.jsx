@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import foodRecipesImage from '../../images/mealsCategories/icons8-recipe-50.png';
+import foodRecipesImage from '../../images/mealsCategories/icons8-poultry-leg-50.png';
 import drinkRecipesImage from '../../images/drinksCategories/icons8-cocktail-50.png';
 import allRecipesImage from '../../images/icons8-cookbook-50.png';
 
