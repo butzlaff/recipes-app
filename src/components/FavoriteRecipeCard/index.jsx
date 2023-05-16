@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clipboardCopy from 'clipboard-copy';
 import { useHistory } from 'react-router-dom';
 import shareIcon from '../../images/shareIcon.svg';
@@ -50,6 +50,16 @@ export default function FavoriteRecipeCard({
     localStorage.setItem('favoriteRecipes', JSON.stringify(newFavoriteRecipes));
     handleUnfavorite(newFavoriteRecipes);
   }
+
+  useEffect(() => {
+    if (isRecipeCopied) {
+      const maxTime = 2000;
+      const timeout = setTimeout(() => {
+        setIsRecipeCopied(false);
+      }, maxTime);
+      return () => clearTimeout(timeout);
+    }
+  }, [isRecipeCopied]);
 
   return (
     <div>

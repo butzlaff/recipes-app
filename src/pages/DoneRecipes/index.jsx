@@ -10,10 +10,10 @@ function DoneRecipes() {
   const hasAnyFilter = filteredDoneRecipes.length > 0;
 
   return (
-    <>
+    <div>
       <Header title="Done Recipes" />
       <FilterButtons setFilteredDoneRecipes={ setFilteredDoneRecipes } />
-      <div>
+      <div className="flex flex-col w-5/6 items-center gap-2 m-auto">
         {(hasAnyFilter ? filteredDoneRecipes : doneRecipes)?.map(
           (
             {
@@ -46,7 +46,7 @@ function DoneRecipes() {
         )}
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 
