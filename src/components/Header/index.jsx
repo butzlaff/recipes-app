@@ -41,7 +41,7 @@ function Header({ title }) {
             data-testid="profile-top-btn"
             src="profileIcon"
             alt="profile-icon"
-            className="w-8 h-8"
+            className="w-8 h-8 hover:cursor-pointer"
           />
           {(title === 'Drinks' || title === 'Meals') && (
             <MagnifyingGlassIcon
@@ -49,7 +49,7 @@ function Header({ title }) {
               data-testid="search-top-btn"
               src="searchIcon"
               alt="search-top-btn"
-              className="w-8 h-8"
+              className="w-8 h-8 hover:cursor-pointer"
             />
           )}
         </div>
