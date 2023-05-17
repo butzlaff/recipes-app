@@ -44,10 +44,9 @@ export default function FilterButtons({
         <button
           key={ `${name}-filter` }
           className="
-            text-white
             flex flex-col items-center
             justify-center px-2 py-1 rounded-md
-            gap-2
+            gap-2 text-violet-400 text-sm w-10
           "
           id={ isMealButton(name) ? 'meal' : 'drink' }
           onClick={ ({ target }) => handleFilter(target.id) }
@@ -55,19 +54,16 @@ export default function FilterButtons({
             isMealButton(name) ? 'filter-by-meal-btn' : 'filter-by-drink-btn'
           }
         >
-          <img src={ filterButtonsImages[name] } alt="" />
-          <span className="text-violet-400 text-sm w-10 flex justify-center items-center">
-            {name}
-          </span>
+          <img src={ filterButtonsImages[name] } className="object-cover" alt="" />
+          {name}
         </button>
       ))}
       <button
         data-testid="filter-by-all-btn"
         className="
-            text-white
             flex flex-col items-center
             justify-center px-2 py-1 rounded-md
-            gap-2
+            gap-2 text-violet-400 text-sm w-10
           "
         onClick={ () => {
           if (pathname === '/done-recipes') {
@@ -77,10 +73,8 @@ export default function FilterButtons({
           }
         } }
       >
-        <img src={ filterButtonsImages.All } alt="" />
-        <span className="text-violet-400 text-sm w-10 flex justify-center items-center">
-          All
-        </span>
+        <img src={ filterButtonsImages.All } className="object-cover" alt="" />
+        All
       </button>
     </div>
   );

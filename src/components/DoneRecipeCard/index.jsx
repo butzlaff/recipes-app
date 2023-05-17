@@ -63,7 +63,7 @@ export default function DoneRecipeCard({
       <div
         className="
           flex flex-col px-3 justify-between py-1
-          w-fit border border-stone-400
+          w-40 border border-stone-400
           rounded-r-lg
         "
       >
@@ -71,14 +71,14 @@ export default function DoneRecipeCard({
           <button
             data-testid={ `${index}-horizontal-name` }
             onClickCapture={ redirectToDetails }
-            className="flex flex-col"
+            className="flex flex-col justify-center items-center"
           >
-            <p className="text-md font-bold">{name}</p>
+            <p className="text-sm font-bold">{name}</p>
             <p
               data-testid={ `${index}-horizontal-top-text` }
-              className="text-xs font-semibold text-neutral-400"
+              className="text-[0.5rem] font-semibold text-neutral-400"
             >
-              {`${nationality} - ${category}`}
+              {`${nationality && `${nationality} - `} ${category}`}
               {alcoholicOrNot ? ' - Alcoholic' : null}
             </p>
           </button>
@@ -103,7 +103,7 @@ export default function DoneRecipeCard({
         >
           {`Done in: ${doneDate}`}
         </p>
-        <div className="flex justify-between">
+        <div className="flex gap-2">
           {tags.map((tag, i) => (
             <p
               key={ i }

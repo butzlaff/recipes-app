@@ -16,22 +16,24 @@ function FavoriteRecipes() {
     <>
       <Header title="Favorite Recipes" />
       <FilterButtons setFilteredFavoriteRecipes={ setFilteredFavoriteRecipes } />
-      {(hasAnyFilter ? filteredFavoriteRecipes : favoriteRecipes)?.map(
-        ({ name, nationality, category, type, id, image, alcoholicOrNot }, i) => (
-          <FavoriteRecipeCard
-            key={ name }
-            name={ name }
-            nationality={ nationality }
-            category={ category }
-            type={ type }
-            index={ i }
-            id={ id }
-            image={ image }
-            handleUnfavorite={ setFavoriteRecipes }
-            alcoholicOrNot={ alcoholicOrNot }
-          />
-        ),
-      )}
+      <div className="flex flex-col w-5/6 items-center gap-2 m-auto mb-20">
+        {(hasAnyFilter ? filteredFavoriteRecipes : favoriteRecipes)?.map(
+          ({ name, nationality, category, type, id, image, alcoholicOrNot }, i) => (
+            <FavoriteRecipeCard
+              key={ name }
+              name={ name }
+              nationality={ nationality }
+              category={ category }
+              type={ type }
+              index={ i }
+              id={ id }
+              image={ image }
+              handleUnfavorite={ setFavoriteRecipes }
+              alcoholicOrNot={ alcoholicOrNot }
+            />
+          ),
+        )}
+      </div>
       <Footer />
     </>
   );

@@ -13,7 +13,7 @@ function DoneRecipes() {
     <div>
       <Header title="Done Recipes" />
       <FilterButtons setFilteredDoneRecipes={ setFilteredDoneRecipes } />
-      <div className="flex flex-col w-5/6 items-center gap-2 m-auto">
+      <div className="flex flex-col w-5/6 items-center gap-2 m-auto mb-20">
         {(hasAnyFilter ? filteredDoneRecipes : doneRecipes)?.map(
           (
             {
